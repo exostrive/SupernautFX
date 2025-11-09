@@ -25,7 +25,7 @@ module app.supernaut.fx.testapp {
     requires app.supernaut.fx;
 
     requires jakarta.inject;
-    requires io.micronaut.inject;
+    requires io.micronaut.micronaut_inject; // Needed for Micronaut-generated classes, see JavaDoc comment above
     requires jakarta.annotation;
 
     requires org.slf4j;

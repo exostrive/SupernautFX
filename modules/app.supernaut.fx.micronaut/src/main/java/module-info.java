@@ -25,7 +25,8 @@ module app.supernaut.fx.micronaut {
     requires javafx.graphics;
     requires javafx.fxml;
 
-    requires io.micronaut.inject;
+    requires jakarta.inject;
+    requires io.micronaut.micronaut_inject;
     requires org.slf4j;
     
     exports app.supernaut.fx.micronaut;
