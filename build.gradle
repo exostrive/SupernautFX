@@ -66,7 +66,6 @@ apply from: 'gradle/licenseCheck.gradle'
 apply from: 'gradle/javadoc.gradle'
 apply from: 'gradle/asciidoctor.gradle'
 apply from: 'gradle/github-pages.gradle'
-apply from: 'gradle/maven-publish.gradle'
 
 tasks.register('testReport', TestReport) {
     // Include the results from the `test` task in all subprojects
@@ -106,5 +105,30 @@ String normalizeAppVersion(final String appVersion) {
         return appVersion.replaceAll('-SNAPSHOT$', '')
     } else {
         return appVersion.replaceAll('-SNAPSHOT$', '')
+    }
+}
+
+subprojects {
+    apply plugin: 'maven-publish'
+    publishing {
+        publications {
+            mavenJava(MavenPublication) {
+                version = rootProject.version
+                from components.java
+            }
+        }
+        repositories {
+            // change URLs to point to your repos, e.g. http://my.org/repo
+            maven {
+                name = 'forgejo'
+                url = "https://git.exostrive.com/api/packages/exostrive/maven"
+                if (project.hasProperty('mavenUsername') && project.hasProperty('mavenPassword')) {
+                    credentials {
+                        username "$mavenUsername"
+                        password "$mavenPassword"
+                    }
+                }
+            }
+        }
     }
 }

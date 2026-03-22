@@ -22,7 +22,8 @@ dependencies {
     api "org.openjfx:javafx-fxml:${javaFxVersion}"
     api "io.micronaut:micronaut-inject:${micronautVersion}"
 
-    implementation "org.slf4j:slf4j-api:${slf4jVersion}"
+    api("jakarta.inject:jakarta.inject-api:2.0.1")
 
+    implementation "org.slf4j:slf4j-api:${slf4jVersion}"
     testImplementation "io.micronaut.test:micronaut-test-spock:${micronautTestSpockVersion}"
 }
