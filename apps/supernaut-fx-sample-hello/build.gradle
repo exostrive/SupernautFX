@@ -28,7 +28,6 @@ dependencies {
 
 configurations.configureEach {
     exclude group: 'javax.annotation', module: "javax.annotation-api"
-    exclude group: 'org.yaml', module: "snakeyaml"
 }
 
 javafx {

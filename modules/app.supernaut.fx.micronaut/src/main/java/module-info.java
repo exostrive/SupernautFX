@@ -27,6 +27,8 @@ module app.supernaut.fx.micronaut {
 
     requires jakarta.inject;
     requires io.micronaut.micronaut_inject;
+    requires io.micronaut.micronaut_context;
+    requires org.yaml.snakeyaml;
     requires org.slf4j;
     
     exports app.supernaut.fx.micronaut;

@@ -16,6 +16,7 @@
 package app.supernaut.fx.sample.hello;
 
 import app.supernaut.fx.sample.hello.service.GreetingService;
+import app.supernaut.fx.sample.hello.service.TestConfiguration;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -40,6 +41,7 @@ public class MainWindowController {
     private static final URI githubRepoUri = URI.create("https://github.com/SupernautApp/SupernautFX");
     private final BrowserService browserService;
     private final GreetingService greetingService;
+    private final TestConfiguration testConfiguration;
 
     @FXML
     private Hyperlink githubLink;
@@ -55,9 +57,10 @@ public class MainWindowController {
      * @param browserService injected browser service for launching browser windows
      * @param greetingService injected greeting service for getting the planet name
      */
-    public MainWindowController(BrowserService browserService, GreetingService greetingService) {
+    public MainWindowController(BrowserService browserService, GreetingService greetingService, TestConfiguration testConfiguration) {
         this.greetingService = greetingService;
         this.browserService = browserService;
+        this.testConfiguration = testConfiguration;
     }
 
     /**
@@ -78,7 +81,7 @@ public class MainWindowController {
     public void buttonAction(ActionEvent event) {
         var greeting = greetingService.greeting();
         log.info("buttonAction: greeting: {}", greeting);
-        message.setText(greetingService.greeting());
+        message.setText(greetingService.greeting() + "\n" + testConfiguration.getTitle());
     }
 
     /**

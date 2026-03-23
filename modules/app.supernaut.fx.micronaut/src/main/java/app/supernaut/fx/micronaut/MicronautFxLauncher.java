@@ -51,7 +51,7 @@ public class MicronautFxLauncher extends FxLauncherAbstract {
      *        {@code BackgroundApp} on new thread, if false start them on calling thread (typically the main thread)
      */
     public MicronautFxLauncher(boolean initializeBackgroundAppOnNewThread) {
-        super(() -> new MicronautAppFactory(false), initializeBackgroundAppOnNewThread);
+        super(() -> new MicronautAppFactory(true), initializeBackgroundAppOnNewThread);
     }
 
     /**
@@ -63,7 +63,13 @@ public class MicronautFxLauncher extends FxLauncherAbstract {
      */
     public MicronautFxLauncher(boolean initializeBackgroundAppOnNewThread,
                                boolean useApplicationContext) {
-        super(() -> new MicronautAppFactory(useApplicationContext), initializeBackgroundAppOnNewThread);
+        super(() -> new MicronautAppFactory(useApplicationContext, Environment.CLI), initializeBackgroundAppOnNewThread);
+    }
+
+    public MicronautFxLauncher(boolean initializeBackgroundAppOnNewThread,
+                               boolean useApplicationContext,
+                               String ... environmentNames) {
+        super(() -> new MicronautAppFactory(useApplicationContext, environmentNames), initializeBackgroundAppOnNewThread);
     }
 
     /**
@@ -84,10 +90,10 @@ public class MicronautFxLauncher extends FxLauncherAbstract {
          * Constructor for Micronaut implementation of AppFactory
          * @param useApplicationContext create {@link ApplicationContext} if true, {@link BeanContext} if false
          */
-        public MicronautAppFactory(boolean useApplicationContext) {
+        public MicronautAppFactory(boolean useApplicationContext, String... environmentNames) {
             if (useApplicationContext) {
                 log.info("Creating Micronaut ApplicationContext");
-                this.context = ApplicationContext.builder(Environment.CLI).build();
+                this.context = ApplicationContext.builder(environmentNames).build();
             } else {
                 log.info("Creating Micronaut BeanContext");
                 this.context = BeanContext.build();

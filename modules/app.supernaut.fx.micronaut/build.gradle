@@ -17,10 +17,14 @@ test {
 }
 
 dependencies {
+    annotationProcessor("io.micronaut:micronaut-inject-java:${micronautVersion}")
+
     api project (':modules:app.supernaut.fx')
     api "org.openjfx:javafx-graphics:${javaFxVersion}"
     api "org.openjfx:javafx-fxml:${javaFxVersion}"
     api "io.micronaut:micronaut-inject:${micronautVersion}"
+    api "io.micronaut:micronaut-context:${micronautVersion}"
+    api "org.yaml:snakeyaml:2.4"
 
     api("jakarta.inject:jakarta.inject-api:2.0.1")
 
