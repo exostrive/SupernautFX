@@ -118,17 +118,6 @@ subprojects {
             }
         }
         repositories {
-            // change URLs to point to your repos, e.g. http://my.org/repo
-            maven {
-                name = 'forgejo'
-                url = "https://git.exostrive.com/api/packages/exostrive/maven"
-                if (project.hasProperty('mavenUsername') && project.hasProperty('mavenPassword')) {
-                    credentials {
-                        username "$mavenUsername"
-                        password "$mavenPassword"
-                    }
-                }
-            }
             maven {
                 name = 'GitHubPackages'
                 url = uri('https://maven.pkg.github.com/exostrive/SupernautFX')
