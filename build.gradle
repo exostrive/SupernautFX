@@ -23,7 +23,7 @@ allprojects {
     apply plugin: 'groovy'
 
     version = supernautVersion     // set in gradle.properties
-    group = 'app.supernaut'
+    group = 'com.exostrive.supernautfx'
 
     repositories {
         mavenCentral()
@@ -53,7 +53,7 @@ allprojects {
     }
 
     compileJava {
-        options.release = 17
+        options.release = 23
         options.compilerArgs << '-Xlint:deprecation' << '-Xlint:unchecked'
     }
 
@@ -127,6 +127,15 @@ subprojects {
                         username "$mavenUsername"
                         password "$mavenPassword"
                     }
+                }
+            }
+            maven {
+                name = 'GitHubPackages'
+                url = uri('https://maven.pkg.github.com/exostrive/SupernautFX')
+
+                credentials {
+                    username = System.getenv('GITHUB_ACTOR')
+                    password = System.getenv('GITHUB_TOKEN')
                 }
             }
         }
