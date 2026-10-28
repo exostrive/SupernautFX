@@ -23,6 +23,7 @@ import app.supernaut.fx.test.NoopBackgroundApp;
 import io.micronaut.context.ApplicationContext;
 import io.micronaut.context.BeanContext;
 import io.micronaut.context.env.Environment;
+import java.util.Arrays;
 import javafx.application.Application;
 import javafx.application.HostServices;
 import app.supernaut.BackgroundApp;
@@ -92,7 +93,7 @@ public class MicronautFxLauncher extends FxLauncherAbstract {
          */
         public MicronautAppFactory(boolean useApplicationContext, String... environmentNames) {
             if (useApplicationContext) {
-                log.info("Creating Micronaut ApplicationContext");
+                log.info("Creating Micronaut ApplicationContext with env={}", Arrays.asList(environmentNames));
                 this.context = ApplicationContext.builder(environmentNames).build();
             } else {
                 log.info("Creating Micronaut BeanContext");
