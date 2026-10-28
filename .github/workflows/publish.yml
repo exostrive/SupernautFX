@@ -31,4 +31,4 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           VERSION="5.0.${GITHUB_RUN_NUMBER}-exostrive"
-          ./gradlew publishAllPublicationsToGitHubPackagesRepository -Pversion="$VERSION"
+          ./gradlew modules:publishAllPublicationsToGitHubPackagesRepository -Pversion="$VERSION"
