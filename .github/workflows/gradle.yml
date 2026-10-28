@@ -15,20 +15,24 @@ jobs:
     steps:
     - name: Git checkout
       uses: actions/checkout@v4
+
     - name: Set up JDK (via matrix) for Gradle and Gradle Java Toolchain
       id: setupjdk
       uses: actions/setup-java@v4
       with:
         distribution: ${{ matrix.distribution }}
         java-version: ${{ matrix.java }}
+
     - name: Verify Gradle Wrapper
       uses: gradle/actions/wrapper-validation@v4
+
     - name: Cache Gradle packages
       uses: actions/cache@v3
       with:
         path: ~/.gradle/caches
         key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
         restore-keys: ${{ runner.os }}-gradle
+
     - name: Build with Gradle
       shell: bash
       run: |
@@ -36,24 +40,28 @@ jobs:
         ./gradlew -PbaseModuleJavaCompatibility=8 -PjavaToolchainVersion=${JDKVER%%"-ea"} buildCI buildJPackages --scan --info --stacktrace
       env:
         JAVA_HOME: ${{ steps.setupjdk.outputs.path }}
+
     - name: Upload DMG as an artifact
       uses: actions/upload-artifact@v4
       with:
         name: supernaut-fx-hello-jdk${{ matrix.java }}-${{ matrix.os }}-dmg
         path: apps/supernaut-fx-sample-hello/build/jpackage/*.dmg
         if-no-files-found: ignore
+
     - name: Upload EXE as an artifact
       uses: actions/upload-artifact@v4
       with:
         name: supernaut-fx-hello-jdk${{ matrix.java }}-${{ matrix.os }}-exe
         path: apps/supernaut-fx-sample-hello/build/jpackage/*.exe
         if-no-files-found: ignore
+
     - name: Upload DEB as an artifact
       uses: actions/upload-artifact@v4
       with:
         name: supernaut-fx-hello-jdk${{ matrix.java }}-${{ matrix.os }}-deb
         path: apps/supernaut-fx-sample-hello/build/jpackage/*.deb
         if-no-files-found: ignore
+
     - name: Upload RPM as an artifact
       uses: actions/upload-artifact@v4
       with:
