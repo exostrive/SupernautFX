@@ -39,7 +39,7 @@ module app.supernaut.fx.sample.minimal {
     requires jakarta.inject;
     requires io.micronaut.micronaut_inject; // Needed for Micronaut-generated classes, see JavaDoc comment above
     requires jakarta.annotation;
-
+    requires org.yaml.snakeyaml;
     requires org.slf4j;
 
     opens app.supernaut.fx.sample.minimal to javafx.graphics, java.base;
