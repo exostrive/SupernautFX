@@ -16,6 +16,7 @@ application {
 dependencies {
     implementation project (':modules:app.supernaut.fx')
     implementation "org.slf4j:slf4j-api:${slf4jVersion}"
+    implementation "org.yaml:snakeyaml:2.4"
 
     implementation "jakarta.inject:jakarta.inject-api"
     implementation "io.micronaut:micronaut-inject:${micronautVersion}"  // For Micronaut annotations eg. @Factory and generated code
@@ -28,7 +29,6 @@ dependencies {
 
 configurations.configureEach {
     exclude group: 'javax.annotation', module: "javax.annotation-api"
-    exclude group: 'org.yaml', module: "snakeyaml"
 }
 
 javafx {
