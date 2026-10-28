@@ -31,4 +31,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           VERSION="5.0.${GITHUB_RUN_NUMBER}-exostrive"
-          ./gradlew modules:publishAllPublicationsToGitHubPackagesRepository -Pversion="$VERSION"
+          ./gradlew modules:app.supernaut:publishAllPublicationsToGitHubPackagesRepository -Pversion="$VERSION"
+          ./gradlew modules:app.supernaut.fx:publishAllPublicationsToGitHubPackagesRepository -Pversion="$VERSION"
+          ./gradlew modules:app.supernaut.fx.micronaut:publishAllPublicationsToGitHubPackagesRepository -Pversion="$VERSION"
+
